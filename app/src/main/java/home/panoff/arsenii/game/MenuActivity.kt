@@ -42,10 +42,8 @@ class MenuActivity : BaseActivity() {
         if( MusicEnabled ) {
             mp2.setVolume(1f, 1f)
             sound.setBackgroundResource(android.R.drawable.ic_lock_silent_mode_off)
-//            MusicEnabled = false
         }
         else {
-//            MusicEnabled=0
             mp2.setVolume(0f, 0f)
             sound.setBackgroundResource(android.R.drawable.ic_lock_silent_mode)
         }
