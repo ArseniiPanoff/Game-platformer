@@ -15,12 +15,14 @@ import android.content.SharedPreferences
 
 
 class MenuActivity : BaseActivity() {
-    private var Counter: Int = 0
+    private var MusicEnabled: Boolean = false
 
     // имя файла настройки
-    val APP_PREFERENCES = "settings"
+    val APP_PREFERENCES = "mysettings"
     val APP_PREFERENCES_COUNTER = "fouder"
+
     private var settings: SharedPreferences? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,23 +30,24 @@ class MenuActivity : BaseActivity() {
 
 
 
-        this.settings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
-        this.Counter = this.settings!!.getInt(APP_PREFERENCES_COUNTER, 0)
+        settings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
+        MusicEnabled = settings!!.getBoolean(APP_PREFERENCES_COUNTER, false)
 
         requestedOrientation = SCREEN_ORIENTATION_LANDSCAPE
         val mp2: MediaPlayer = MediaPlayer.create(this, R.raw.space)
         mp2.start()
         mp2.isLooping = true
+
         
-        
-        if(this.Counter==0) {
-            mp2.setVolume(0f, 0f)
-            sound.setBackgroundResource(android.R.drawable.ic_lock_silent_mode)
-            this.Counter = 1
-        }
-        else {this.Counter=0
+        if( MusicEnabled ) {
             mp2.setVolume(1f, 1f)
             sound.setBackgroundResource(android.R.drawable.ic_lock_silent_mode_off)
+//            MusicEnabled = false
+        }
+        else {
+//            MusicEnabled=0
+            mp2.setVolume(0f, 0f)
+            sound.setBackgroundResource(android.R.drawable.ic_lock_silent_mode)
         }
 
         start.setOnClickListener { startActivity(Intent(this@MenuActivity, GameActivity::class.java)) }
@@ -53,18 +56,22 @@ class MenuActivity : BaseActivity() {
         scores.setOnClickListener { startActivity(Intent(this@MenuActivity, ScoresActivity::class.java)) }
         exit.setOnClickListener { finishAffinity();System.exit(0)}
 
-        sound.setOnClickListener {if(this.Counter==0) {
-            this.Counter = 1
-            mp2.setVolume(0f, 0f)
-            sound.setBackgroundResource(android.R.drawable.ic_lock_silent_mode)
-                                            }
-                                  else{
-            this.Counter = 0
-            mp2.setVolume(1f, 1f)
-            sound.setBackgroundResource(android.R.drawable.ic_lock_silent_mode_off)
+        sound.setOnClickListener {
+            if( MusicEnabled ) {
+                MusicEnabled = false
+                mp2.setVolume(0f, 0f)
+                sound.setBackgroundResource(android.R.drawable.ic_lock_silent_mode)
+            }
+            else {
+                MusicEnabled = true
+                mp2.setVolume(1f, 1f)
+                sound.setBackgroundResource(android.R.drawable.ic_lock_silent_mode_off)
 
+            }
+            val editor = this.settings!!.edit()
+            editor.putBoolean(APP_PREFERENCES_COUNTER, MusicEnabled)
+            editor.apply()
         }
-                                    }
 
         val spaceImageView = findViewById<View>(R.id.ice) as ImageView
         // Анимация для восхода солнца
@@ -84,15 +91,17 @@ class MenuActivity : BaseActivity() {
 
         if (this.settings!!.contains(APP_PREFERENCES_COUNTER)) {
             // Получаем число из настроек
-            this.Counter = this.settings!!.getInt(APP_PREFERENCES_COUNTER, 0)
+            MusicEnabled = this.settings!!.getBoolean(APP_PREFERENCES_COUNTER, false)
         }
     }
 
     override fun onStop() {
-        super.onStop()
+
         // Запоминаем данные
         val editor = this.settings!!.edit()
-        editor.putInt(APP_PREFERENCES_COUNTER, this.Counter)
+        editor.putBoolean(APP_PREFERENCES_COUNTER, MusicEnabled)
         editor.apply()
+
+        super.onStop()
     }
 }
