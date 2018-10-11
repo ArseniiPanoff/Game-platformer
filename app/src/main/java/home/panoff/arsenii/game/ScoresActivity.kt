@@ -3,6 +3,7 @@ package home.panoff.arsenii.game
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.R.id.edit
+import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.widget.TextView
@@ -10,7 +11,7 @@ import android.content.Context.MODE_PRIVATE
 import android.view.View
 
 
-class ScoresActivity : BaseActivity() {
+class ScoresActivity : Activity() {
 
     private var mCounter: Int = 0
     private var mInfoTextView: TextView? = null

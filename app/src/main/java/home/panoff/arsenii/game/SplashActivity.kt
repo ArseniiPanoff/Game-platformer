@@ -1,5 +1,6 @@
 package home.panoff.arsenii.game
 
+import android.app.Activity
 import android.os.Bundle
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -12,7 +13,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 
 
-class SplashActivity : BaseActivity() {
+class SplashActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +32,7 @@ class SplashActivity : BaseActivity() {
         sunImageView.startAnimation(sunRiseAnimation)
 
         val handler = Handler()
-        handler.postDelayed( { startActivity(Intent(this@SplashActivity, MenuActivity::class.java));mp1.stop();mp1.release() }, 1000)
-        }
+        handler.postDelayed( { startActivity(Intent(this@SplashActivity, MenuActivity::class.java));mp1.stop();mp1.release();finish() }, 1000)
 
-
+    }
 }

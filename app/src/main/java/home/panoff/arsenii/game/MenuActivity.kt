@@ -1,6 +1,7 @@
 package home.panoff.arsenii.game
 
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
@@ -13,9 +14,12 @@ import kotlinx.android.synthetic.main.menu.*
 import android.content.SharedPreferences
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Toast
 
 
-class MenuActivity : BaseActivity() {
+
+
+class MenuActivity : Activity() {
     private var MusicEnabled: Boolean = false
 
     // имя файла настройки
@@ -24,7 +28,16 @@ class MenuActivity : BaseActivity() {
 
     private var settings: SharedPreferences? = null
 
+    private var back_pressed: Long = 0
 
+    override fun onBackPressed() {
+        if (this.back_pressed + 2000 > System.currentTimeMillis()){
+            super.onBackPressed();finishAffinity();System.exit(0)}
+        else
+            Toast.makeText(baseContext, "Press once again to exit!",
+                    Toast.LENGTH_SHORT).show()
+        this.back_pressed = System.currentTimeMillis()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -52,10 +65,15 @@ class MenuActivity : BaseActivity() {
             sound.setBackgroundResource(android.R.drawable.ic_lock_silent_mode)
         }
 
-        start.setOnClickListener { startActivity(Intent(this@MenuActivity, GameActivity::class.java)) }
-        help.setOnClickListener { startActivity(Intent(this@MenuActivity, HelpActivity::class.java)) }
-        about.setOnClickListener { startActivity(Intent(this@MenuActivity, AboutActivity::class.java)) }
-        scores.setOnClickListener { startActivity(Intent(this@MenuActivity, ScoresActivity::class.java)) }
+        start.setOnClickListener  { val intent = Intent(this@MenuActivity, GameActivity::class.java)
+            startActivity(intent)
+            }
+        help.setOnClickListener   { val intent = Intent(this@MenuActivity, HelpActivity::class.java)
+            startActivity(intent) }
+        about.setOnClickListener  { val intent = Intent(this@MenuActivity, AboutActivity::class.java)
+            startActivity(intent) }
+        scores.setOnClickListener { val intent = Intent(this@MenuActivity, ScoresActivity::class.java)
+            startActivity(intent) }
         exit.setOnClickListener { finishAffinity();System.exit(0)}
 
         sound.setOnClickListener {
