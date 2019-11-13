@@ -1,11 +1,12 @@
 <resources>
-    <string name="app_name">Game</string>
+    <string name="app_name">Fume and Flame</string>
     <string name="splash">Splash Screen</string>
     <string name="game">Play</string>
     <string name="menu">Menu</string>
     <string name="help">Help</string>
     <string name="scores">Scores</string>
     <string name="ice">ice</string>
+    <string name="zerg_logo">zerg_logo</string>
     <string name="about">About</string>
     <string name="sun">sun</string>
     <string name="grass">grass</string>

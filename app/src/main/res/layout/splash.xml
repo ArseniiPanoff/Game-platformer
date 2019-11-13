@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity" >
-
+    tools:context=".SplashActivity">
 
     <ImageView
         android:id="@+id/sky"
@@ -16,32 +15,15 @@
         android:src="@drawable/sky" />
 
     <ImageView
-        android:id="@+id/ice"
+        android:id="@+id/zerg_logo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="0dp"
-        android:contentDescription="@string/ice"
-        android:src="@drawable/ice" />
+        android:contentDescription="@string/zerg_logo"
+        android:src="@drawable/zerg_icon" />
 
-    <ImageView
-        android:id="@+id/sun"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:contentDescription="@string/sun"
-        android:scaleType="fitCenter"
-        android:src="@drawable/sun" />
 
-    <ImageView
-        android:id="@+id/grass"
-        android:layout_width="fill_parent"
-        android:layout_height="25dp"
-        android:layout_alignParentBottom="true"
-        android:contentDescription="@string/grass"
-        android:src="@drawable/grass" />
 
 </RelativeLayout>

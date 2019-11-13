@@ -1,13 +1,11 @@
 package home.panoff.arsenii.game
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.R.id.edit
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.widget.TextView
-import android.content.Context.MODE_PRIVATE
 import android.view.View
 
 
@@ -25,12 +23,13 @@ class ScoresActivity : Activity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.scores)
-
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
         mInfoTextView = findViewById<View>(R.id.textViewInfo) as TextView?
     }
 
-    fun onClick(v: View) {
+    @SuppressLint("SetTextI18n")
+    fun onClick(v:View) {
         // Выводим на экран
         mInfoTextView!!.text = "Я насчитал " + ++mCounter + " ворон"
     }
@@ -46,7 +45,15 @@ class ScoresActivity : Activity() {
                     + mCounter + " ворон")
         }
     }
-
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+    }
     override fun onPause() {
         super.onPause()
         // Запоминаем данные
