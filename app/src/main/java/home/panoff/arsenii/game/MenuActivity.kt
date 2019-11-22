@@ -8,8 +8,6 @@ import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
-import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import kotlinx.android.synthetic.main.menu.*
 import android.content.SharedPreferences
 import android.view.Window
@@ -112,17 +110,6 @@ class MenuActivity : Activity() {
 
     override fun onResume() {
         super.onResume()
-        val spaceImageView = findViewById<ImageView>(R.id.ice)
-        // Анимация для восхода солнца
-        val menuSplashAnimation = AnimationUtils.loadAnimation(this, R.anim.menu_splash)
-        // Подключаем анимацию к нужному View
-        spaceImageView.startAnimation(menuSplashAnimation)
-
-        val fogImageView = findViewById<ImageView>(R.id.fog)
-        // Анимация для восхода солнца
-        val fogSplashAnimation = AnimationUtils.loadAnimation(this, R.anim.fog_anim)
-        // Подключаем анимацию к нужному View
-        fogImageView.startAnimation(fogSplashAnimation)
 
         if (this.settings!!.contains(APP_PREFERENCES_COUNTER)) {
             // Получаем число из настроек
