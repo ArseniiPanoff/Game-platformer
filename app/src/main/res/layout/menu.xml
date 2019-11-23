@@ -1,46 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-
-    <ImageView
-        android:id="@+id/sky"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:contentDescription="@string/sky"
-        android:src="@drawable/sky" />
-
-    <ImageView
-        android:id="@+id/ice"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:contentDescription="@string/ice"
-        android:src="@drawable/ice"
-        app:srcCompat="@drawable/ice" />
-
-    <ImageView
-        android:id="@+id/fog"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:contentDescription="@string/fog"
-        android:src="@drawable/fog"
-        app:srcCompat="@drawable/fog" />
+    android:layout_height="fill_parent"
+    android:background="@drawable/background_menu">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_margin="10dp"
-        android:orientation="vertical" >
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
 
         <Button
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/start"
             style="@style/MenuFont"
             android:layout_width="wrap_content"
@@ -50,6 +25,7 @@
             android:visibility="visible" />
 
         <Button
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/scores"
             style="@style/MenuFont"
             android:layout_width="wrap_content"
@@ -59,6 +35,7 @@
             android:visibility="visible" />
 
         <Button
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/help"
             style="@style/MenuFont"
             android:layout_width="wrap_content"
@@ -68,6 +45,7 @@
             android:visibility="visible" />
 
         <Button
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/about"
             style="@style/MenuFont"
             android:layout_width="wrap_content"
